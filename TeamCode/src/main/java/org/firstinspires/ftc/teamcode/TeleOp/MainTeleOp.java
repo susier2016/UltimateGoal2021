@@ -103,7 +103,7 @@ public class MainTeleOp extends OpMode {
         double rotation = gamepad1.right_stick_x;
         boolean precision = gamepad1.right_bumper;
 
-        //INFO Increasing speed to maximum of 1
+        //INFO Increasing speed to a maximum of 1
         double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
         double lb = magnitude * Math.cos(direction + Math.PI / 4) - rotation;
         double rf = magnitude * Math.cos(direction + Math.PI / 4) + rotation;
