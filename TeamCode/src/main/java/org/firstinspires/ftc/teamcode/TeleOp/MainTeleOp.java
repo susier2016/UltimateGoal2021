@@ -32,8 +32,8 @@ public class MainTeleOp extends OpMode {
     double strafe;
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
-    DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, liftMotor, launcherMotor, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
-    Servo arm, platform, armRotate, stoneGripper,suctionPlatformR, suctionPlatformL, constrictL, gate, pusher; //extrusionL, extrusionR;
+    DcMotor leftFront, rightFront, leftBack, rightBack, liftMotor, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
+    //Servo arm, platform, armRotate, stoneGripper,suctionPlatformR, suctionPlatformL, constrictL, gate, pusher; //extrusionL, extrusionR;
 
     @Override
     /**
@@ -51,9 +51,9 @@ public class MainTeleOp extends OpMode {
         leftBack = robot.leftBack;
 
         //Motors for intake
-        intakeMotor = robot.intakeMotor;
+        //intakeMotor = robot.intakeMotor;
         liftMotor = robot.liftMotor;
-        launcherMotor = robot.launcherMotor;
+        //launcherMotor = robot.launcherMotor;
     }
 
     @Override
@@ -75,21 +75,21 @@ public class MainTeleOp extends OpMode {
     public void Intake(){
         if(gamepad1.left_trigger > 0) //Push out
         {
-            intakeMotor.setPower(-1);
+            //intakeMotor.setPower(-1);
             liftMotor.setPower(1);
-            launcherMotor.setPower(1);
+            //launcherMotor.setPower(1);
         }
         if(gamepad1.left_bumper) //Suck in
         {
-            intakeMotor.setPower(1);
+            //intakeMotor.setPower(1);
             liftMotor.setPower(-1);
-            launcherMotor.setPower(-1);
+            //launcherMotor.setPower(-1);
         }
         if(gamepad1.x) //Stop
         {
-            intakeMotor.setPower(0);
+            //intakeMotor.setPower(0);
             liftMotor.setPower(0);
-            launcherMotor.setPower(0);
+            //launcherMotor.setPower(0);
         }
     }
 
