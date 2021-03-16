@@ -1,7 +1,7 @@
 dependencies {
     implementation 'org.firstinspires.ftc:Inspection:5.5'
     implementation 'org.firstinspires.ftc:Blocks:5.5'
-    implementation 'org.firstinspires.ftc:RobotCore:5.5'
+    implementation 'org.firstinspires.ftc:RobotCore:6.1.1'
     implementation 'org.firstinspires.ftc:RobotServer:5.5'
     implementation 'org.firstinspires.ftc:OnBotJava:5.5'
     implementation 'org.firstinspires.ftc:Hardware:5.5'

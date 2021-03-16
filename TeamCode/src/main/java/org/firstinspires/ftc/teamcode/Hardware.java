@@ -61,8 +61,8 @@ public class Hardware {
         leftBack = hwmp.dcMotor.get("Left Back");
 
         //Intake
-        intakeMotor = hwmp.dcMotor.get("Intake");
-        liftMotor = hwmp.dcMotor.get("Lift");
+        //intakeMotor = hwmp.dcMotor.get("Intake");
+        //liftMotor = hwmp.dcMotor.get("Lift");
         launcherMotor = hwmp.dcMotor.get("Launcher");
 
         /*greenWheelLeft = hwmp.dcMotor.get("Green Wheel Left");

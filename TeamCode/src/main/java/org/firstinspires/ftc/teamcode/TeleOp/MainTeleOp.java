@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 //import android.os.Handler;
 
-//this is a test edit by jay
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.Hardware;
@@ -34,7 +32,7 @@ public class MainTeleOp extends OpMode {
     double strafe;
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
-    DcMotor leftFront, rightFront, leftBack, rightBack, liftMotor, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
+    DcMotor leftFront, rightFront, leftBack, rightBack, launcherMotor, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
     //Servo arm, platform, armRotate, stoneGripper,suctionPlatformR, suctionPlatformL, constrictL, gate, pusher; //extrusionL, extrusionR;
 
     @Override
@@ -54,8 +52,10 @@ public class MainTeleOp extends OpMode {
 
         //Motors for intake
         //intakeMotor = robot.intakeMotor;
-        liftMotor = robot.liftMotor;
+        //liftMotor = robot.liftMotor;
         //launcherMotor = robot.launcherMotor;
+
+        launcherMotor = robot.launcherMotor;
     }
 
     @Override
@@ -75,6 +75,7 @@ public class MainTeleOp extends OpMode {
     }
 
     public void Intake(){
+        /*
         if(gamepad1.left_trigger > 0) //Push out
         {
             //intakeMotor.setPower(-1);
@@ -92,6 +93,12 @@ public class MainTeleOp extends OpMode {
             //intakeMotor.setPower(0);
             liftMotor.setPower(0);
             //launcherMotor.setPower(0);
+        }
+        */
+
+        while(gamepad1.left_bumper)
+        {
+            launcherMotor.setPower(-1);
         }
     }
 
