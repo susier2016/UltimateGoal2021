@@ -14,8 +14,8 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.TfodRoverRuckus;
 import org.firstinspires.ftc.teamcode.Hardware;
 
-@TeleOp(name = "Old OpMode", group = "")
-@Disabled
+@TeleOp(name = "New OpMode", group = "")
+//@Disabled
 public class OpMode extends LinearOpMode {
 
     private VuforiaRoverRuckus vuforiaRoverRuckus;

@@ -32,7 +32,7 @@ public class MainTeleOp extends OpMode {
     double strafe;
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
-    DcMotor leftFront, rightFront, leftBack, rightBack, launcherMotor, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
+    DcMotor leftFront, rightFront, leftBack, rightBack, leftLauncher, rightLauncher, wobbleGoalArm, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
     //Servo arm, platform, armRotate, stoneGripper,suctionPlatformR, suctionPlatformL, constrictL, gate, pusher; //extrusionL, extrusionR;
 
     @Override
@@ -55,7 +55,9 @@ public class MainTeleOp extends OpMode {
         //liftMotor = robot.liftMotor;
         //launcherMotor = robot.launcherMotor;
 
-        launcherMotor = robot.launcherMotor;
+        rightLauncher = robot.rightLauncher;
+        leftLauncher = robot.leftLauncher;
+        wobbleGoalArm = robot.wobbleGoalArm;
     }
 
     @Override
@@ -98,7 +100,8 @@ public class MainTeleOp extends OpMode {
 
         while(gamepad1.left_bumper)
         {
-            launcherMotor.setPower(-1);
+            rightLauncher.setPower(1);
+            leftLauncher.setPower(1);
         }
     }
 

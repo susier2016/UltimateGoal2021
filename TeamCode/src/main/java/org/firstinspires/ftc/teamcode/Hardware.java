@@ -16,7 +16,7 @@ public class Hardware {
     //Drive Train
     public DcMotor leftFront, rightFront, rightBack, leftBack;
     //Intake
-    public DcMotor intakeMotor, liftMotor, launcherMotor;
+    public DcMotor leftLauncher, rightLauncher, wobbleGoalArm;
 
     //public DcMotor greenWheelLeft, greenWheelRight;
     //Lift
@@ -63,7 +63,9 @@ public class Hardware {
         //Intake
         //intakeMotor = hwmp.dcMotor.get("Intake");
         //liftMotor = hwmp.dcMotor.get("Lift");
-        launcherMotor = hwmp.dcMotor.get("Launcher");
+        leftLauncher = hwmp.dcMotor.get("Left Launcher");
+        rightLauncher = hwmp.dcMotor.get("Right Launcher");
+        wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
 
         /*greenWheelLeft = hwmp.dcMotor.get("Green Wheel Left");
         greenWheelRight = hwmp.dcMotor.get("Green Wheel Right");
