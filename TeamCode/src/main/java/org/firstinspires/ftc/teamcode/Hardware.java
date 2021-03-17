@@ -109,10 +109,10 @@ public class Hardware {
          */
 
         //Flips motors because they are placed in the opposite direction on the robot---allows for all motors to move in the same direction for one value
-        rightBack.setDirection(DcMotor.Direction.REVERSE);
-        rightFront.setDirection(DcMotor.Direction.REVERSE);
-        //leftFront.setDirection(DcMotor.Direction.REVERSE);
-        //leftBack.setDirection(DcMotor.Direction.REVERSE);
+        //rightBack.setDirection(DcMotor.Direction.REVERSE);
+        //rightFront.setDirection(DcMotor.Direction.REVERSE);
+        leftFront.setDirection(DcMotor.Direction.REVERSE);
+        leftBack.setDirection(DcMotor.Direction.REVERSE);
 
         /*//Set all servo directions
         armRotate.setDirection(Servo.Direction.FORWARD);
