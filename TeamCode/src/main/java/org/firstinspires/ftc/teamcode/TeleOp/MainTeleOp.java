@@ -33,7 +33,6 @@ public class MainTeleOp extends OpMode {
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
     DcMotor leftFront, rightFront, leftBack, rightBack, leftLauncher, rightLauncher, wobbleGoalArm, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
-    //Servo arm, platform, armRotate, stoneGripper,suctionPlatformR, suctionPlatformL, constrictL, gate, pusher; //extrusionL, extrusionR;
 
     @Override
     /**
@@ -51,12 +50,10 @@ public class MainTeleOp extends OpMode {
         leftBack = robot.leftBack;
 
         //Motors for intake
-        //intakeMotor = robot.intakeMotor;
-        //liftMotor = robot.liftMotor;
-        //launcherMotor = robot.launcherMotor;
-
         rightLauncher = robot.rightLauncher;
         leftLauncher = robot.leftLauncher;
+
+        //Motors and servos for wobble goal
         wobbleGoalArm = robot.wobbleGoalArm;
     }
 
@@ -68,41 +65,24 @@ public class MainTeleOp extends OpMode {
     public void loop() {
         //Methods responsible for control of different parts of the the robot
 
-        //Test();
-        DriveControl();
         Intake();
+        WobbleGoal();
+        DriveControl();
 
         //Show Telemetry on Driver Station Phone
         telemetry.update();
     }
 
     public void Intake(){
-        /*
-        if(gamepad1.left_trigger > 0) //Push out
-        {
-            //intakeMotor.setPower(-1);
-            liftMotor.setPower(1);
-            //launcherMotor.setPower(1);
-        }
-        if(gamepad1.left_bumper) //Suck in
-        {
-            //intakeMotor.setPower(1);
-            liftMotor.setPower(-1);
-            //launcherMotor.setPower(-1);
-        }
-        if(gamepad1.x) //Stop
-        {
-            //intakeMotor.setPower(0);
-            liftMotor.setPower(0);
-            //launcherMotor.setPower(0);
-        }
-        */
-
         while(gamepad1.left_bumper)
         {
             rightLauncher.setPower(1);
             leftLauncher.setPower(1);
         }
+    }
+
+    public void WobbleGoal() {
+        telemetry.addData("Wobble Goal Arm Position:", wobbleGoalArm.getCurrentPosition());
     }
 
     public void DriveControl() {
