@@ -15,37 +15,9 @@ public class Hardware {
 
     //Drive Train
     public DcMotor leftFront, rightFront, rightBack, leftBack;
+
     //Intake
-    public DcMotor leftLauncher, rightLauncher, wobbleGoalArm;
-
-    //public DcMotor greenWheelLeft, greenWheelRight;
-    //Lift
-    /*public DcMotor horizontalLift, verticalLift;
-    //Arm
-    //public Servo armLift;
-    //public Servo armClamp;
-    public Servo stoneGripper;
-    //Platform
-    public Servo platform;
-    //SkyBlock Holders
-    public Servo constrictL;
-    //Camera
-    public WebcamName cameraName;
-
-    //TODO ask if gate is a servo that exists
-    public Servo gate;
-
-    //Arm mechanism to push in the brick further
-    public Servo pusher;
-
-    public Servo suctionPlatformR, suctionPlatformL;
-
-    public Servo armRotate;*/
-    /*
-    Extra motors and servos in case we add them later on
-        public DcMotor verticalIntake, horizontalIntake;
-         public Servo extrusionL, extrusionR;
-     */
+    public DcMotor intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
 
     /**
      * Creates a new Hardware with all parts connected to a name
@@ -61,10 +33,11 @@ public class Hardware {
         leftBack = hwmp.dcMotor.get("Left Back");
 
         //Intake
-        //intakeMotor = hwmp.dcMotor.get("Intake");
-        //liftMotor = hwmp.dcMotor.get("Lift");
+        intakeMotor = hwmp.dcMotor.get("Intake");
         leftLauncher = hwmp.dcMotor.get("Left Launcher");
         rightLauncher = hwmp.dcMotor.get("Right Launcher");
+
+        //Wobble Goal Grasp
         wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
 
         /*greenWheelLeft = hwmp.dcMotor.get("Green Wheel Left");

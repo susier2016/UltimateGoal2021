@@ -32,7 +32,7 @@ public class MainTeleOp extends OpMode {
     double strafe;
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
-    DcMotor leftFront, rightFront, leftBack, rightBack, leftLauncher, rightLauncher, wobbleGoalArm;
+    DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
 
     @Override
     /**
@@ -50,6 +50,7 @@ public class MainTeleOp extends OpMode {
         leftBack = robot.leftBack;
 
         //Motors for intake
+        intakeMotor = robot.intakeMotor;
         rightLauncher = robot.rightLauncher;
         leftLauncher = robot.leftLauncher;
 
@@ -73,11 +74,24 @@ public class MainTeleOp extends OpMode {
         telemetry.update();
     }
 
-    public void Intake(){
-        while(gamepad1.left_bumper)
+    public void Intake() {
+        if(gamepad1.left_bumper)
         {
+            intakeMotor.setPower(1);
             rightLauncher.setPower(1);
+            leftLauncher.setPower(-1);
+        }
+        else if(gamepad1.left_trigger > 0)
+        {
+            intakeMotor.setPower(-1);
+            rightLauncher.setPower(-1);
             leftLauncher.setPower(1);
+        }
+        else
+        {
+            intakeMotor.setPower(0);
+            rightLauncher.setPower(0);
+            leftLauncher.setPower(0);
         }
     }
 

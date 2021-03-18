@@ -12,7 +12,7 @@ public class MainAuton extends LinearOpMode {
     Hardware robot;
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
-    DcMotor leftFront, rightFront, leftBack, rightBack, leftLauncher, rightLauncher, wobbleGoalArm;
+    DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,6 +27,7 @@ public class MainAuton extends LinearOpMode {
         leftBack = robot.leftBack;
 
         //Motors for intake
+        intakeMotor = robot.intakeMotor;
         rightLauncher = robot.rightLauncher;
         leftLauncher = robot.leftLauncher;
 
