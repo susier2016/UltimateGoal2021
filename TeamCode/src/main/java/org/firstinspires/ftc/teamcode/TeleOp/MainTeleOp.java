@@ -16,7 +16,7 @@ import java.lang.Math;
     left and right triggers on controllers are scaled 0-1
     .getMode() exists
  */
-@TeleOp(name = "Testing TeleOp", group = "Linear Opmode")
+@TeleOp(name = "Main TeleOp", group = "Linear OpMode")
 
 /**
   MainTeleOp is the class responsible for all of the TeleOp methods. It has a robot, movement, rotation, strafe, eight motors, and five servos
@@ -32,7 +32,7 @@ public class MainTeleOp extends OpMode {
     double strafe;
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
-    DcMotor leftFront, rightFront, leftBack, rightBack, leftLauncher, rightLauncher, wobbleGoalArm, greenWheelLeft, greenWheelRight, horizontalLift, verticalLift;
+    DcMotor leftFront, rightFront, leftBack, rightBack, leftLauncher, rightLauncher, wobbleGoalArm;
 
     @Override
     /**
