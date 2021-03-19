@@ -107,8 +107,9 @@ public class Hardware {
      * Resets drive encoders so that they are starting from 0 at every time
      * Encoders are used to control how much a motor moves---used for travelling by distance and setting levels for lifting
      */
-    public void resetDriveEncoders() {
-
+    /*
+    public void resetDriveEncoders()
+    {
         //Stop and Reset Encoders
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -128,8 +129,7 @@ public class Hardware {
         //verticalLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //greenWheelRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //greenWheelLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-    }
+    }*/
 
     /**
      * Stop all the motors and servos
