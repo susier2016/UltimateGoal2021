@@ -33,7 +33,7 @@ public class MainTeleOp extends OpMode {
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
     DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
-    Servo wobbleGoalGrasp;
+    Servo wobbleGoalGrasp, pushServo;
 
     @Override
     /**
@@ -50,14 +50,15 @@ public class MainTeleOp extends OpMode {
         rightBack = robot.rightBack;
         leftBack = robot.leftBack;
 
-        //Motors for intake
+        //Motors and servos for intake
         intakeMotor = robot.intakeMotor;
         rightLauncher = robot.rightLauncher;
         leftLauncher = robot.leftLauncher;
+        //pushServo = robot.pushServo;
 
         //Motors and servos for wobble goal
-        wobbleGoalArm = robot.wobbleGoalArm;
-        wobbleGoalGrasp = robot.wobbleGoalGrasp;
+        //wobbleGoalArm = robot.wobbleGoalArm;
+        //wobbleGoalGrasp = robot.wobbleGoalGrasp;
     }
 
     @Override
@@ -69,7 +70,7 @@ public class MainTeleOp extends OpMode {
         //Methods responsible for control of different parts of the the robot
 
         Intake();
-        WobbleGoal();
+        //WobbleGoal();
         DriveControl();
 
         //Show Telemetry on Driver Station Phone
@@ -77,6 +78,7 @@ public class MainTeleOp extends OpMode {
     }
 
     public void Intake() {
+        //Turns on Intake and shooting
         if(gamepad1.left_bumper)
         {
             intakeMotor.setPower(1);
@@ -95,8 +97,16 @@ public class MainTeleOp extends OpMode {
             rightLauncher.setPower(0);
             leftLauncher.setPower(0);
         }
+
+        //Turns on servo to push disks into launcher
+        if(gamepad1.a)
+        {
+            pushServo.setPosition(Servo.MAX_POSITION);
+            pushServo.setPosition(Servo.MIN_POSITION);
+        }
     }
 
+    /*
     public void WobbleGoal() {
         if(gamepad1.dpad_right)
         {
@@ -115,6 +125,7 @@ public class MainTeleOp extends OpMode {
             telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
         }
     }
+     */
 
     public void DriveControl() {
         movement = gamepad1.left_stick_y;

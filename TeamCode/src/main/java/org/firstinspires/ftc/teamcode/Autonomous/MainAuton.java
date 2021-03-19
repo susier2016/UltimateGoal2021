@@ -32,6 +32,6 @@ public class MainAuton extends LinearOpMode {
         leftLauncher = robot.leftLauncher;
 
         //Motors and servos for wobble goal
-        wobbleGoalArm = robot.wobbleGoalArm;
+        //wobbleGoalArm = robot.wobbleGoalArm;
     }
 }

@@ -18,10 +18,11 @@ public class Hardware {
 
     //Intake
     public DcMotor intakeMotor, leftLauncher, rightLauncher;
+    //public Servo pushServo;
 
     //Wobble Goal
-    public DcMotor wobbleGoalArm;
-    public Servo wobbleGoalGrasp;
+    //public DcMotor wobbleGoalArm;
+    //public Servo wobbleGoalGrasp;
 
     /**
      * Creates a new Hardware with all parts connected to a name
@@ -40,12 +41,13 @@ public class Hardware {
         intakeMotor = hwmp.dcMotor.get("Intake");
         leftLauncher = hwmp.dcMotor.get("Left Launcher");
         rightLauncher = hwmp.dcMotor.get("Right Launcher");
+        //pushServo = hwmp.servo.get("Pusher");
 
         //Wobble Goal
-        wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
-        wobbleGoalGrasp = hwmp.servo.get("Wobble Goal Grasp");
+        //wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
+        //wobbleGoalGrasp = hwmp.servo.get("Wobble Goal Grasp");
 
-        wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
+        //wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
 
         /*greenWheelLeft = hwmp.dcMotor.get("Green Wheel Left");
         greenWheelRight = hwmp.dcMotor.get("Green Wheel Right");
@@ -91,10 +93,10 @@ public class Hardware {
          */
 
         //Flips motors because they are placed in the opposite direction on the robot---allows for all motors to move in the same direction for one value
-        //rightBack.setDirection(DcMotor.Direction.REVERSE);
-        //rightFront.setDirection(DcMotor.Direction.REVERSE);
-        leftFront.setDirection(DcMotor.Direction.REVERSE);
-        leftBack.setDirection(DcMotor.Direction.REVERSE);
+        rightBack.setDirection(DcMotor.Direction.REVERSE);
+        rightFront.setDirection(DcMotor.Direction.REVERSE);
+        //leftFront.setDirection(DcMotor.Direction.REVERSE);
+        //leftBack.setDirection(DcMotor.Direction.REVERSE);
 
         /*//Set all servo directions
         armRotate.setDirection(Servo.Direction.FORWARD);
