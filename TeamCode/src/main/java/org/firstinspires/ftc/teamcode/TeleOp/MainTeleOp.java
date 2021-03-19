@@ -33,6 +33,7 @@ public class MainTeleOp extends OpMode {
 
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
     DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
+    Servo wobbleGoalGrasp;
 
     @Override
     /**
@@ -56,6 +57,7 @@ public class MainTeleOp extends OpMode {
 
         //Motors and servos for wobble goal
         wobbleGoalArm = robot.wobbleGoalArm;
+        wobbleGoalGrasp = robot.wobbleGoalGrasp;
     }
 
     @Override
@@ -96,7 +98,22 @@ public class MainTeleOp extends OpMode {
     }
 
     public void WobbleGoal() {
-        telemetry.addData("Wobble Goal Arm Position:", wobbleGoalArm.getCurrentPosition());
+        if(gamepad1.dpad_right)
+        {
+            wobbleGoalGrasp.setPosition(Servo.MAX_POSITION);
+        }
+        if(gamepad1.dpad_left)
+        {
+            wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
+        }
+        if(gamepad1.dpad_up) //need to get values for min and max positions
+        {
+            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+        }
+        if(gamepad1.dpad_down)
+        {
+            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+        }
     }
 
     public void DriveControl() {

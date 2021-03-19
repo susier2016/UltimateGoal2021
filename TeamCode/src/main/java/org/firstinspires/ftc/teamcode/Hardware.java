@@ -17,7 +17,11 @@ public class Hardware {
     public DcMotor leftFront, rightFront, rightBack, leftBack;
 
     //Intake
-    public DcMotor intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
+    public DcMotor intakeMotor, leftLauncher, rightLauncher;
+
+    //Wobble Goal
+    public DcMotor wobbleGoalArm;
+    public Servo wobbleGoalGrasp;
 
     /**
      * Creates a new Hardware with all parts connected to a name
@@ -37,8 +41,11 @@ public class Hardware {
         leftLauncher = hwmp.dcMotor.get("Left Launcher");
         rightLauncher = hwmp.dcMotor.get("Right Launcher");
 
-        //Wobble Goal Grasp
+        //Wobble Goal
         wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
+        wobbleGoalGrasp = hwmp.servo.get("Wobble Goal Grasp");
+
+        wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
 
         /*greenWheelLeft = hwmp.dcMotor.get("Green Wheel Left");
         greenWheelRight = hwmp.dcMotor.get("Green Wheel Right");
