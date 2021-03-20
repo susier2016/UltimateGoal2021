@@ -4,6 +4,8 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence;
 import org.firstinspires.ftc.teamcode.Hardware;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -54,7 +56,8 @@ public class MainTeleOp extends OpMode {
         intakeMotor = robot.intakeMotor;
         rightLauncher = robot.rightLauncher;
         leftLauncher = robot.leftLauncher;
-        //pushServo = robot.pushServo;
+        pushServo = robot.pushServo;
+        pushServo.setPosition(Servo.MAX_POSITION);
 
         //Motors and servos for wobble goal
         //wobbleGoalArm = robot.wobbleGoalArm;
@@ -79,21 +82,26 @@ public class MainTeleOp extends OpMode {
 
     public void Intake() {
         //Turns on Intake and shooting
-        if(gamepad1.left_bumper)
+        if(gamepad1.right_trigger > 0)
         {
             intakeMotor.setPower(1);
-            rightLauncher.setPower(1);
-            leftLauncher.setPower(-1);
         }
         else if(gamepad1.left_trigger > 0)
         {
             intakeMotor.setPower(-1);
-            rightLauncher.setPower(-1);
-            leftLauncher.setPower(1);
         }
         else
         {
             intakeMotor.setPower(0);
+        }
+
+        if(gamepad1.left_bumper)
+        {
+            rightLauncher.setPower(1);
+            leftLauncher.setPower(-1);
+        }
+        else
+        {
             rightLauncher.setPower(0);
             leftLauncher.setPower(0);
         }
@@ -101,8 +109,11 @@ public class MainTeleOp extends OpMode {
         //Turns on servo to push disks into launcher
         if(gamepad1.a)
         {
-            pushServo.setPosition(Servo.MAX_POSITION);
             pushServo.setPosition(Servo.MIN_POSITION);
+        }
+        if(gamepad1.b)
+        {
+            pushServo.setPosition(Servo.MAX_POSITION);
         }
     }
 
@@ -138,10 +149,17 @@ public class MainTeleOp extends OpMode {
         boolean precision = gamepad1.right_bumper;
 
         //INFO Increasing speed to a maximum of 1
-        double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
+        /*double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
         double lb = magnitude * Math.cos(direction + Math.PI / 4) - rotation;
         double rf = magnitude * Math.cos(direction + Math.PI / 4) + rotation;
-        double rb = magnitude * Math.sin(direction + Math.PI / 4) + rotation;
+        double rb = magnitude * Math.sin(direction + Math.PI / 4) + rotation;*/
+
+        //I'm just desperate at this point
+        double lf = magnitude * Math.sin(direction + 1.07) - rotation;
+        double lb = magnitude * Math.cos(direction + 0.485) - rotation;
+        double rf = magnitude * Math.cos(direction + 0.485) + rotation;
+        double rb = magnitude * Math.sin(direction + 1.07) + rotation;
+
         double hypot = Math.hypot(movement, strafe);
         double ratio;
         if (movement == 0 && strafe == 0)

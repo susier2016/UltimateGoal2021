@@ -18,7 +18,7 @@ public class Hardware {
 
     //Intake
     public DcMotor intakeMotor, leftLauncher, rightLauncher;
-    //public Servo pushServo;
+    public Servo pushServo;
 
     //Wobble Goal
     //public DcMotor wobbleGoalArm;
@@ -41,7 +41,7 @@ public class Hardware {
         intakeMotor = hwmp.dcMotor.get("Intake");
         leftLauncher = hwmp.dcMotor.get("Left Launcher");
         rightLauncher = hwmp.dcMotor.get("Right Launcher");
-        //pushServo = hwmp.servo.get("Pusher");
+        pushServo = hwmp.servo.get("Pusher");
 
         //Wobble Goal
         //wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
