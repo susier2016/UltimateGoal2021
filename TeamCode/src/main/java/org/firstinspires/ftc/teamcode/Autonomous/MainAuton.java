@@ -40,6 +40,18 @@ public class MainAuton extends LinearOpMode {
         rightFront.setPower(1);
         rightBack.setPower(1);
 
+        sleep(milliseconds: 2500);
+
+        leftFront.setPower(0);
+        leftBack.setPower(0);
+        rightFront.setPower(0);
+        rightBack.setPower(0);
+
+        for (int i = 0; i < 3; i++) {
+            pushServo.setPosition(Servo.MAX_POSITION);
+            pushServo.setPosition(Servo.MIN_POSITION);
+        }
+
         //Robot moves back and lands on parking line
     }
 }
