@@ -145,7 +145,6 @@ public class MainTeleOp extends OpMode {
 
         double magnitude = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
         double direction = Math.atan2(-gamepad1.left_stick_x, gamepad1.left_stick_y);
-        double rotation = gamepad1.right_stick_x;
         boolean precision = gamepad1.right_bumper;
 
         //INFO Increasing speed to a maximum of 1

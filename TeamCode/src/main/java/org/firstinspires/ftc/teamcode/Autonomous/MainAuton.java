@@ -35,24 +35,42 @@ public class MainAuton extends LinearOpMode {
         leftLauncher = robot.leftLauncher;
         pushServo = robot.pushServo;
 
+        double movement = 1;
+        double magnitude = 1;
+        double direction = Math.atan2(0, 1);
+
+        double lf = magnitude * Math.sin(direction + 1.07);
+        double lb = magnitude * Math.cos(direction + 0.485);
+        double rf = magnitude * Math.cos(direction + 0.485);
+        double rb = magnitude * Math.sin(direction + 1.07);
+
+        double hypot = Math.hypot(movement, 0);
+        double ratio;
+
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
+
         //Motors and servos for wobble goal
         //wobbleGoalArm = robot.wobbleGoalArm;
 
+        waitForStart();
+
         //Robot moves up and shoots 3 preloaded rings into goals
-        leftFront.setPower(-1);
-        leftBack.setPower(-1);
-        rightFront.setPower(1);
-        rightBack.setPower(1);
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
 
-        sleep(2500);
+        sleep(1500);
 
-        //leftFront.setPower(0);
-        //leftBack.setPower(0);
-        //rightFront.setPower(0);
-        //rightBack.setPower(0);
+        leftFront.setPower(0);
+        leftBack.setPower(0);
+        rightFront.setPower(0);
+        rightBack.setPower(0);
 
         rightLauncher.setPower(1);
         leftLauncher.setPower(1);
+
+        sleep(10000);
 
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
@@ -61,7 +79,8 @@ public class MainAuton extends LinearOpMode {
             pushServo.setPosition(Servo.MIN_POSITION);
         }
 
-        sleep(10000);
+        rightLauncher.setPower(0);
+        leftLauncher.setPower(0);
 
         //Robot moves back and lands on parking line
         leftFront.setPower(1);
