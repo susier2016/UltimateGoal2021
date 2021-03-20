@@ -58,5 +58,13 @@ public class MainAuton extends LinearOpMode {
         sleep(milliseconds: 10000);
 
         //Robot moves back and lands on parking line
+        leftFront.setPower(1);
+        leftBack.setPower(1);
+        rightFront.setPower(-1);
+        rightBack.setPower(-1);
+
+        sleep(milliseconds: 2500);
+
+        //ADD MOVEMENT TO RIGHT OR LEFT IF NEEDED
     }
 }
