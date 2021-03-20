@@ -34,6 +34,7 @@ public class MainAuton extends LinearOpMode {
         rightLauncher = robot.rightLauncher;
         leftLauncher = robot.leftLauncher;
         pushServo = robot.pushServo;
+        pushServo.setPosition(Servo.MAX_POSITION);
 
         double movement = 1;
         double magnitude = 1;
@@ -60,7 +61,14 @@ public class MainAuton extends LinearOpMode {
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
 
-        sleep(1500);
+        sleep(1000);
+
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(-ratio * rb);
+
+        sleep(50);
 
         leftFront.setPower(0);
         leftBack.setPower(0);
@@ -68,27 +76,26 @@ public class MainAuton extends LinearOpMode {
         rightBack.setPower(0);
 
         rightLauncher.setPower(1);
-        leftLauncher.setPower(1);
-
-        sleep(10000);
+        leftLauncher.setPower(-1);
+        sleep(500);
 
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
-            pushServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
             pushServo.setPosition(Servo.MIN_POSITION);
+            sleep(1000);
+            pushServo.setPosition(Servo.MAX_POSITION);
+            sleep(1000);
         }
 
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
 
         //Robot moves back and lands on parking line
-        leftFront.setPower(1);
-        leftBack.setPower(1);
-        rightFront.setPower(-1);
-        rightBack.setPower(-1);
-
-        sleep(2500);
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(250);
 
         //ADD MOVEMENT TO RIGHT OR LEFT IF NEEDED
     }
