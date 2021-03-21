@@ -96,7 +96,5 @@ public class MainAuton extends LinearOpMode {
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
         sleep(250);
-
-        //ADD MOVEMENT TO RIGHT OR LEFT IF NEEDED
     }
 }
