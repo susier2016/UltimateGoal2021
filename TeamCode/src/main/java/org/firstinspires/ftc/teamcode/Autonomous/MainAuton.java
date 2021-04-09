@@ -75,8 +75,8 @@ public class MainAuton extends LinearOpMode {
         rightFront.setPower(0);
         rightBack.setPower(0);
 
-        rightLauncher.setPower(0.95);
-        leftLauncher.setPower(-0.95);
+        rightLauncher.setPower(1);
+        leftLauncher.setPower(-1);
         sleep(500);
 
         //Launches 3 disks
@@ -95,8 +95,6 @@ public class MainAuton extends LinearOpMode {
         leftBack.setPower(ratio * lb);
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
-        sleep(500);
-
-        //ADD MOVEMENT TO RIGHT OR LEFT IF NEEDED
+        sleep(250);
     }
 }
