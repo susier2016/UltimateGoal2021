@@ -82,7 +82,7 @@ public class MainTeleOp extends OpMode {
 
     public void Intake() {
         //Turns on Intake and shooting
-        if(gamepad1.right_trigger > 0)
+        /*if(gamepad1.right_trigger > 0)
         {
             intakeMotor.setPower(1);
         }
@@ -93,12 +93,12 @@ public class MainTeleOp extends OpMode {
         else
         {
             intakeMotor.setPower(0);
-        }
+        }*/
 
         if(gamepad1.left_bumper)
         {
-            rightLauncher.setPower(1);
-            leftLauncher.setPower(-1);
+            rightLauncher.setPower(0.9);
+            leftLauncher.setPower(-0.9);
         }
         else
         {
@@ -146,6 +146,12 @@ public class MainTeleOp extends OpMode {
         double magnitude = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
         double direction = Math.atan2(-gamepad1.left_stick_x, gamepad1.left_stick_y);
         boolean precision = gamepad1.right_bumper;
+        int invert;
+
+        if(gamepad1.x)
+            invert = -1;
+        else
+            invert = 1;
 
         //INFO Increasing speed to a maximum of 1
         /*double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
@@ -168,9 +174,9 @@ public class MainTeleOp extends OpMode {
         else
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
 
-        leftFront.setPower(ratio * lf);
-        leftBack.setPower(ratio * lb);
-        rightFront.setPower(ratio * rf);
-        rightBack.setPower(ratio * rb);
+        leftFront.setPower(invert * ratio * lf);
+        leftBack.setPower(invert * ratio * lb);
+        rightFront.setPower(invert * ratio * rf);
+        rightBack.setPower(invert * ratio * rb);
     }
 }
