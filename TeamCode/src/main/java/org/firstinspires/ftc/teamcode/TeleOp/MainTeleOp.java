@@ -161,16 +161,10 @@ public class MainTeleOp extends OpMode {
             invert = 1;
 
         //INFO Increasing speed to a maximum of 1
-        /*double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
+        double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
         double lb = magnitude * Math.cos(direction + Math.PI / 4) - rotation;
         double rf = magnitude * Math.cos(direction + Math.PI / 4) + rotation;
-        double rb = magnitude * Math.sin(direction + Math.PI / 4) + rotation;*/
-
-        //I'm just desperate at this point
-        double lf = magnitude * Math.sin(direction + 1.07) - rotation;
-        double lb = magnitude * Math.cos(direction + 0.485) - rotation;
-        double rf = magnitude * Math.cos(direction + 0.485) + rotation;
-        double rb = magnitude * Math.sin(direction + 1.07) + rotation;
+        double rb = magnitude * Math.sin(direction + Math.PI / 4) + rotation;
 
         double hypot = Math.hypot(movement, strafe);
         double ratio;

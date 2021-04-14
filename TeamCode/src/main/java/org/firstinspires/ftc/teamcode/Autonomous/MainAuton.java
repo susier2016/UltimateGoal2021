@@ -40,10 +40,10 @@ public class MainAuton extends LinearOpMode {
         double magnitude = 1;
         double direction = Math.atan2(0, 1);
 
-        double lf = magnitude * Math.sin(direction + 1.07);
-        double lb = magnitude * Math.cos(direction + 0.485);
-        double rf = magnitude * Math.cos(direction + 0.485);
-        double rb = magnitude * Math.sin(direction + 1.07);
+        double lf = magnitude * Math.sin(direction + Math.PI / 4);
+        double lb = magnitude * Math.cos(direction + Math.PI / 4);
+        double rf = magnitude * Math.cos(direction + Math.PI / 4);
+        double rb = magnitude * Math.sin(direction + Math.PI / 4);
 
         double hypot = Math.hypot(movement, 0);
         double ratio;
