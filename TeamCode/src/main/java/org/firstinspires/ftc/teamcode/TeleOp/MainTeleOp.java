@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 //import android.os.Handler;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence;
@@ -36,6 +37,7 @@ public class MainTeleOp extends OpMode {
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
     DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
     Servo wobbleGoalGrasp, pushServo;
+    CRServo intakeServo;
 
     @Override
     /**
@@ -58,6 +60,7 @@ public class MainTeleOp extends OpMode {
         leftLauncher = robot.leftLauncher;
         pushServo = robot.pushServo;
         pushServo.setPosition(Servo.MAX_POSITION);
+        intakeServo = robot.intakeServo;
 
         //Motors and servos for wobble goal
         //wobbleGoalArm = robot.wobbleGoalArm;
@@ -76,24 +79,32 @@ public class MainTeleOp extends OpMode {
         //WobbleGoal();
         DriveControl();
 
+        if(pushServo.getPosition() == Servo.MIN_POSITION)
+        {
+            pushServo.setPosition(Servo.MAX_POSITION);
+        }
+
         //Show Telemetry on Driver Station Phone
         telemetry.update();
     }
 
     public void Intake() {
         //Turns on Intake and shooting
-        /*if(gamepad1.right_trigger > 0)
+        if(gamepad1.right_trigger > 0)
         {
             intakeMotor.setPower(1);
+            intakeServo.setPower(-1);
         }
         else if(gamepad1.left_trigger > 0)
         {
             intakeMotor.setPower(-1);
+            intakeServo.setPower(1);
         }
         else
         {
             intakeMotor.setPower(0);
-        }*/
+            intakeServo.setPower(0);
+        }
 
         if(gamepad1.left_bumper)
         {
@@ -110,10 +121,6 @@ public class MainTeleOp extends OpMode {
         if(gamepad1.a)
         {
             pushServo.setPosition(Servo.MIN_POSITION);
-        }
-        if(gamepad1.b)
-        {
-            pushServo.setPosition(Servo.MAX_POSITION);
         }
     }
 

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -19,6 +20,7 @@ public class Hardware {
     //Intake
     public DcMotor intakeMotor, leftLauncher, rightLauncher;
     public Servo pushServo;
+    public CRServo intakeServo;
 
     //Wobble Goal
     //public DcMotor wobbleGoalArm;
@@ -41,7 +43,8 @@ public class Hardware {
         intakeMotor = hwmp.dcMotor.get("Intake");
         leftLauncher = hwmp.dcMotor.get("Left Launcher");
         rightLauncher = hwmp.dcMotor.get("Right Launcher");
-        pushServo = hwmp.servo.get("Pusher");
+        pushServo = hwmp.servo.get("Push Servo");
+        intakeServo = hwmp.crservo.get("Intake Servo");
 
         //Wobble Goal
         //wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
