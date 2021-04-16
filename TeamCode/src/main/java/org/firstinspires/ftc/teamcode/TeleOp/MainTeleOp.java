@@ -108,8 +108,8 @@ public class MainTeleOp extends OpMode {
 
         if(gamepad1.left_bumper)
         {
-            rightLauncher.setPower(0.9);
-            leftLauncher.setPower(-0.9);
+            rightLauncher.setPower(0.75);
+            leftLauncher.setPower(-0.75);
         }
         else
         {
@@ -121,6 +121,13 @@ public class MainTeleOp extends OpMode {
         if(gamepad1.a)
         {
             pushServo.setPosition(Servo.MIN_POSITION);
+            long startTime = System.currentTimeMillis();
+
+            while(System.currentTimeMillis() - startTime < 250) //waits for 1 second before moving the servo back to max position
+            {
+            }
+
+            pushServo.setPosition(Servo.MAX_POSITION);
         }
     }
 
@@ -153,12 +160,10 @@ public class MainTeleOp extends OpMode {
         double magnitude = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
         double direction = Math.atan2(-gamepad1.left_stick_x, gamepad1.left_stick_y);
         boolean precision = gamepad1.right_bumper;
-        int invert;
+        int invert = 1;
 
         if(gamepad1.x)
-            invert = -1;
-        else
-            invert = 1;
+            invert = invert * -1;
 
         //INFO Increasing speed to a maximum of 1
         double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;

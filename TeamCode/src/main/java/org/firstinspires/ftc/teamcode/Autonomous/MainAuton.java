@@ -82,9 +82,9 @@ public class MainAuton extends LinearOpMode {
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
             pushServo.setPosition(Servo.MIN_POSITION);
-            sleep(1000);
+            sleep(250);
             pushServo.setPosition(Servo.MAX_POSITION);
-            sleep(1000);
+            sleep(250);
         }
 
         rightLauncher.setPower(0);
