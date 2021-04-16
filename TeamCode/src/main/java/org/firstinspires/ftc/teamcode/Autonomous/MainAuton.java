@@ -91,19 +91,30 @@ public class MainAuton extends LinearOpMode {
         leftLauncher.setPower(0);
 
         if (detectOne()) {
-            u(); 
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+            //Robot moves back to intake 1 ring
+            leftFront.setPower(-(ratio * lf));
+            leftBack.setPower(-(ratio * lb));
+            rightFront.setPower(-(ratio * rf));
+            rightBack.setPower(-(ratio * rb));
+            
+            sleep(100);
         } 
         else if (detectTwo()) {
-            u(); 
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+            //Robot moves back to intake 2 rings
         } 
         else if (detectThree()) {
-            u(); 
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+            //Robot moves back to intake 3 rings
         }
         else if (detectFour()) {
-            u(); 
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+            //Robot moves back to intake 4 rings
         }
         else { 
             //Robot moves back and lands on parking line
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
             leftFront.setPower(ratio * lf);
             leftBack.setPower(ratio * lb);
             rightFront.setPower(ratio * rf);
