@@ -55,46 +55,6 @@ public class MainAuton extends LinearOpMode {
 
         waitForStart();
 
-        //Robot moves up and shoots 3 preloaded rings into goals
-        leftFront.setPower(ratio * lf);
-        leftBack.setPower(ratio * lb);
-        rightFront.setPower(ratio * rf);
-        rightBack.setPower(ratio * rb);
-
-        sleep(1000);
-
-        leftFront.setPower(-ratio * lf);
-        leftBack.setPower(-ratio * lb);
-        rightFront.setPower(-ratio * rf);
-        rightBack.setPower(-ratio * rb);
-
-        sleep(50);
-
-        leftFront.setPower(0);
-        leftBack.setPower(0);
-        rightFront.setPower(0);
-        rightBack.setPower(0);
-
-        rightLauncher.setPower(1);
-        leftLauncher.setPower(-1);
-        sleep(500);
-
-        //Launches 3 disks
-        for (int i = 0; i < 3; i++) {
-            pushServo.setPosition(Servo.MIN_POSITION);
-            sleep(250);
-            pushServo.setPosition(Servo.MAX_POSITION);
-            sleep(250);
-        }
-
-        rightLauncher.setPower(0);
-        leftLauncher.setPower(0);
-
-        //Robot moves back and lands on parking line
-        leftFront.setPower(ratio * lf);
-        leftBack.setPower(ratio * lb);
-        rightFront.setPower(ratio * rf);
-        rightBack.setPower(ratio * rb);
-        sleep(250);
+        //
     }
 }
