@@ -90,11 +90,25 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
 
-        //Robot moves back and lands on parking line
-        leftFront.setPower(ratio * lf);
-        leftBack.setPower(ratio * lb);
-        rightFront.setPower(ratio * rf);
-        rightBack.setPower(ratio * rb);
-        sleep(250);
+        if (detectOne()) {
+            u(); 
+        } 
+        else if (detectTwo()) {
+            u(); 
+        } 
+        else if (detectThree()) {
+            u(); 
+        }
+        else if (detectFour()) {
+            u(); 
+        }
+        else { 
+            //Robot moves back and lands on parking line
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(250);
+        }
     }
 }
