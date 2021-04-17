@@ -107,5 +107,27 @@ public class NoRingAuton extends LinearOpMode {
 
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
+
+        //take wobble goal to designated box(last one)
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(1500);
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(500);
+
+//drop wobble goal into box
+
+//park
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        sleep(1000);
     }
 }

@@ -107,5 +107,47 @@ public class FourRingAuton extends LinearOpMode {
 
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
+
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
+//Robot moves back to intake 3 out of the 4 rings
+        leftFront.setPower(-(ratio * lf));
+        leftBack.setPower(-(ratio * lb));
+        rightFront.setPower(-(ratio * rf));
+        rightBack.setPower(-(ratio * rb));
+        intakeMotor.setPower(1);
+        intakeServo.setPower(-1);
+        sleep(150);
+
+//move forward and shoot the rings
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(75);
+        rightLauncher.setPower(1);
+        leftLauncher.setPower(-1);
+        for (int i = 0; i < 3; i++)
+        {
+            pushServo.setPosition(Servo.MIN_POSITION);
+            sleep(250);
+            pushServo.setPosition(Servo.MAX_POSITION);
+            sleep(250);
+        }
+
+//take wobble goal to designated box(first middle one)
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(1000);
+//INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+
+//park
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        sleep(75);
     }
 }

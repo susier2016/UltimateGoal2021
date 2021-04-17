@@ -107,5 +107,54 @@ public class OneRingAuton extends LinearOpMode {
 
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
+
+        //Robot moves back to intake 1 ring
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        intakeMotor.setPower(1);
+        intakeServo.setPower(-1);
+        sleep(150);
+
+//move forward and shoot the ring
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(75);
+        rightLauncher.setPower(1);
+        leftLauncher.setPower(-1);
+        for (int i = 0; i < 1; i++) {
+            pushServo.setPosition(Servo.MIN_POSITION);
+            sleep(250);
+            pushServo.setPosition(Servo.MAX_POSITION);
+        }
+
+//take wobble goal to designated box(first one to the right)
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))/2
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(850);
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(500);
+
+//drops wobble goal
+        hkhfv
+
+//park
+        ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        sleep(700);
     }
 }
