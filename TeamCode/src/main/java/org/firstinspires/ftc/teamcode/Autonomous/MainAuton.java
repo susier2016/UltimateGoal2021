@@ -152,7 +152,6 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
-
             sleep(315);
         }
         else {
