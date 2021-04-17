@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 /**
@@ -25,6 +24,7 @@ public class Hardware {
     //Wobble Goal
     public DcMotor wobbleGoalArm;
     public Servo wobbleGoalGrasp;
+
 
     /**
      * Creates a new Hardware with all parts connected to a name
@@ -56,6 +56,9 @@ public class Hardware {
         //Flips motors because they are placed in the opposite direction on the robot---allows for all motors to move in the same direction for one value
         rightBack.setDirection(DcMotor.Direction.REVERSE);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
+
+        //Webcam
+        WebcamName = hwmp.get(WebcamName.class, "webcam");
     }
 
     /**
