@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.Hardware;
 
@@ -16,6 +17,7 @@ public class MainAuton extends LinearOpMode {
     //Define the Motors and Servos here to not rely on referencing the robot variable to access the motors and servos
     DcMotor leftFront, rightFront, leftBack, rightBack, intakeMotor, leftLauncher, rightLauncher, wobbleGoalArm;
     Servo pushServo;
+    CRServo intakeServo;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -35,6 +37,7 @@ public class MainAuton extends LinearOpMode {
         leftLauncher = robot.leftLauncher;
         pushServo = robot.pushServo;
         pushServo.setPosition(Servo.MAX_POSITION);
+        intakeServo = robot.intakeServo;
 
         double movement = 1;
         double magnitude = 1;
@@ -51,25 +54,39 @@ public class MainAuton extends LinearOpMode {
         ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
 
         //Motors and servos for wobble goal
-        //wobbleGoalArm = robot.wobbleGoalArm;
+        wobbleGoalArm = robot.wobbleGoalArm;
 
         waitForStart();
 
-        //Robot moves up and shoots 3 preloaded rings into goals
+        //Stafes left for half a second
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        sleep(500);
+
+        //Moves forward for one and a half seconds
         leftFront.setPower(ratio * lf);
         leftBack.setPower(ratio * lb);
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
+        sleep(1500);
 
-        sleep(1000);
+//        //Jerks to stop robot from turning
+//        leftFront.setPower(-ratio * lf);
+//        leftBack.setPower(-ratio * lb);
+//        rightFront.setPower(-ratio * rf);
+//        rightBack.setPower(-ratio * rb);
+//        sleep(50);
 
-        leftFront.setPower(-ratio * lf);
+        //Stafes right for half a second
+        leftFront.setPower(ratio * lf);
         leftBack.setPower(-ratio * lb);
         rightFront.setPower(-ratio * rf);
-        rightBack.setPower(-ratio * rb);
+        rightBack.setPower(ratio * rb);
+        sleep(500);
 
-        sleep(50);
-
+        //Stops all motors
         leftFront.setPower(0);
         leftBack.setPower(0);
         rightFront.setPower(0);
@@ -78,7 +95,6 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(1);
         leftLauncher.setPower(-1);
         sleep(500);
-
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
             pushServo.setPosition(Servo.MIN_POSITION);
@@ -101,7 +117,7 @@ public class MainAuton extends LinearOpMode {
             intakeServo.setPower(-1);
             sleep(150);
             sleep(315);
-        } 
+        }
         else if (detectTwo()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 3;
             //Robot moves back to intake 2 rings
@@ -113,7 +129,7 @@ public class MainAuton extends LinearOpMode {
             intakeServo.setPower(-1);
             sleep(150);
             sleep(315);
-        } 
+        }
         else if (detectThree()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 4;
             //Robot moves back to intake 3 rings
@@ -136,10 +152,10 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
-            
+
             sleep(315);
         }
-        else { 
+        else {
             //Robot moves back and lands on parking line
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
             leftFront.setPower(ratio * lf);
