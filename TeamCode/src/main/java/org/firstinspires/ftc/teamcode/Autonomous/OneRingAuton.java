@@ -145,6 +145,9 @@ public class OneRingAuton extends LinearOpMode {
         sleep(500);
 
 //drops wobble goal
+        wobbleGoalArm.setTargetPosition(-211);
+        wobbleGoalArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        wobbleGoalArm.setPower(0.5);
         wobbleGoalGrasp.setPosition(Servo.MAX_POSITION);
 
 //park
