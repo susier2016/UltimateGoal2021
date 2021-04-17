@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
+package org.firstinspires.ftc.teamcode.Old;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -87,8 +87,8 @@ public class DetectRingAmount extends LinearOpMode
         static final int REGION_WIDTH = 2;
         static final int REGION_HEIGHT = 40;
 
-        final int FOUR_RING_THRESHOLD = 147;
-        final int ONE_RING_THRESHOLD = 128;
+        static final int FOUR_RING_THRESHOLD = 147;
+        static final int ONE_RING_THRESHOLD = 128;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
@@ -100,13 +100,13 @@ public class DetectRingAmount extends LinearOpMode
         /*
          * Working variables
          */
-        Mat region1_Cb;
-        Mat YCrCb = new Mat();
-        Mat Cb = new Mat();
-        int avg1;
+        static Mat region1_Cb;
+        static Mat YCrCb = new Mat();
+        static Mat Cb = new Mat();
+        static int avg1;
 
         // Volatile since accessed by OpMode thread w/o synchronization
-        private volatile RingPosition position = RingPosition.FOUR;
+        private static volatile RingPosition position = RingPosition.FOUR;
 
         /*
          * This function takes the RGB frame, converts to YCrCb,
@@ -157,6 +157,22 @@ public class DetectRingAmount extends LinearOpMode
                     -1); // Negative thickness means solid fill
 
             return input;
+        }
+
+        public static RingPosition getNumRings()
+        {
+            avg1 = (int) Core.mean(region1_Cb).val[0];
+
+            position = RingPosition.FOUR; // Record our analysis
+            if(avg1 > FOUR_RING_THRESHOLD){
+                position = RingPosition.FOUR;
+            }else if (avg1 > ONE_RING_THRESHOLD){
+                position = RingPosition.ONE;
+            }else{
+                position = RingPosition.NONE;
+            }
+
+            return position;
         }
 
         public int getAnalysis()

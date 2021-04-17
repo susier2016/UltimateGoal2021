@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
+package org.firstinspires.ftc.teamcode.Old;
 
-import com.arcrobotics.ftclib.vision.UGContourRingPipeline;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.teamcode.Hardware;
 
 @Autonomous(name = "Main Autonomous", group = "Linear OpMode")
+@Disabled
 public class MainAuton extends LinearOpMode {
 
     //Create a robot---responsible for connecting hardware of Hardware class to methods
@@ -109,9 +110,8 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
 
-        if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.ONE())
+        /*if (DetectRingAmount.)
         {
-
             //Robot moves back to intake 1 ring
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
             leftFront.setPower(-ratio * lf);
@@ -150,7 +150,7 @@ public class MainAuton extends LinearOpMode {
             sleep(500);
 
             //drops wobble goal
-            hkhfv
+
 
             //park
             leftFront.setPower(-ratio * lf);
@@ -225,6 +225,6 @@ public class MainAuton extends LinearOpMode {
             rightFront.setPower(-ratio * rf);
             rightBack.setPower(-ratio * rb);
             sleep(1000);
-        }
+        }*/
     }
 }

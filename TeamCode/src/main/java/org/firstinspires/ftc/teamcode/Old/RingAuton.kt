@@ -214,7 +214,7 @@ class UGContourRingPipeline(
         } catch (e: Exception) {
             /**error handling, prints stack trace for specific debug**/
             telemetry?.addData("[ERROR]", e)
-            e.stackTrace.toList().stream().forEach { x -> telemetry?.addLine(x.toString()) }
+            //e.stackTrace.toList().stream().forEach { x -> telemetry?.addLine(x.toString()) }
         }
         telemetry?.update()
 
