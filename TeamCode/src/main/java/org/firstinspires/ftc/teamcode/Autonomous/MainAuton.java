@@ -100,6 +100,7 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
+            sleep(315);
         } 
         else if (detectTwo()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 3;
@@ -111,6 +112,7 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
+            sleep(315);
         } 
         else if (detectThree()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 4;
@@ -122,6 +124,7 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
+            sleep(315);
         }
         else if (detectFour()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
@@ -133,6 +136,8 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
+            
+            sleep(315);
         }
         else { 
             //Robot moves back and lands on parking line
