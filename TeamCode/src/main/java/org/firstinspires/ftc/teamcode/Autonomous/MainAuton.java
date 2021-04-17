@@ -112,7 +112,7 @@ public class MainAuton extends LinearOpMode {
 
         
 
-        if (UGContourRingPipeline.Height.ONE()) {
+        if (EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.ONE()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
 
             //Robot moves back to intake 1 ring
@@ -161,7 +161,7 @@ public class MainAuton extends LinearOpMode {
             rightBack.setPower(-ratio * rb);
             sleep(75);
         }
-        else if UGContourRingPipeline.Height.FOUR()) {
+        else if EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.FOUR()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
             //Robot moves back to intake 3 out of the 4 rings
             leftFront.setPower(-(ratio * lf));
@@ -201,7 +201,7 @@ public class MainAuton extends LinearOpMode {
             rightBack.setPower(-ratio * rb);
             sleep(75);
         }
-        else if (EasyOpenCVExample.position = RingPosition.NONE) {
+        else if (EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.NONE) {
                 //take wobble goal to designated box(first last one)
                 leftFront.setPower(ratio * lf);
                 leftBack.setPower(ratio * lb);
