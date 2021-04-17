@@ -58,8 +58,6 @@ public class OneRingAuton extends LinearOpMode {
 
         waitForStart();
 
-        //Picks up wobble goal
-
         //Stafes left for half a second
         leftFront.setPower(-ratio * lf);
         leftBack.setPower(ratio * lb);
