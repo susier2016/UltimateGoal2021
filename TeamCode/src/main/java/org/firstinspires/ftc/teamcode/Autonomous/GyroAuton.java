@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -42,40 +43,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.Hardware;
 
-/**
- * This file illustrates the concept of driving a path based on Gyro heading and encoder counts.
- * It uses the common Pushbot hardware class to define the drive on the robot.
- * The code is structured as a LinearOpMode
- *
- * The code REQUIRES that you DO have encoders on the wheels,
- *   otherwise you would use: PushbotAutoDriveByTime;
- *
- *  This code ALSO requires that you have a Modern Robotics I2C gyro with the name "gyro"
- *   otherwise you would use: PushbotAutoDriveByEncoder;
- *
- *  This code requires that the drive Motors have been configured such that a positive
- *  power command moves them forward, and causes the encoders to count UP.
- *
- *  This code uses the RUN_TO_POSITION mode to enable the Motor controllers to generate the run profile
- *
- *  In order to calibrate the Gyro correctly, the robot must remain stationary during calibration.
- *  This is performed when the INIT button is pressed on the Driver Station.
- *  This code assumes that the robot is stationary when the INIT button is pressed.
- *  If this is not the case, then the INIT should be performed again.
- *
- *  Note: in this example, all angles are referenced to the initial coordinate frame set during the
- *  the Gyro Calibration process, or whenever the program issues a resetZAxisIntegrator() call on the Gyro.
- *
- *  The angle of movement/rotation is assumed to be a standardized rotation around the robot Z axis,
- *  which means that a Positive rotation is Counter Clock Wise, looking down on the field.
- *  This is consistent with the FTC field coordinate conventions set out in the document:
- *  ftc_app\doc\tutorial\FTC_FieldCoordinateSystemDefinition.pdf
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- */
-
 @Autonomous(name="GyroAuton", group="Linear OpMode")
+@Disabled
 public class GyroAuton extends LinearOpMode {
 
     //Create a robot---responsible for connecting hardware of Hardware class to methods
@@ -86,7 +55,7 @@ public class GyroAuton extends LinearOpMode {
     Servo pushServo;
     CRServo intakeServo;
     BNO055IMU imu;
-    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
+    static final double     COUNTS_PER_MOTOR_REV    = 560 ;    // eg: TETRIX Motor Encoder
     static final double     DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
@@ -100,8 +69,6 @@ public class GyroAuton extends LinearOpMode {
     static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
     static final double     P_TURN_COEFF            = 0.1;     // Larger is more responsive, but also less stable
     static final double     P_DRIVE_COEFF           = 0.15;     // Larger is more responsive, but also less stable
-
-
 
     @Override
     public void runOpMode() {
@@ -123,6 +90,18 @@ public class GyroAuton extends LinearOpMode {
         pushServo = robot.pushServo;
         pushServo.setPosition(Servo.MAX_POSITION);
 
+        //Stop and Reset Encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Start motors using resetted encoders
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         //Gyroscope
         imu = hardwareMap.get(BNO055IMU.class, "imu");
 
@@ -134,15 +113,28 @@ public class GyroAuton extends LinearOpMode {
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
         // Put a hold after each turn
-        gyroDrive(DRIVE_SPEED, 48.0, 0.0);    // Drive FWD 48 inches
+        gyroDrive(DRIVE_SPEED, 12.0, 0.0);    // Drive FWD 48 inches
         gyroTurn( TURN_SPEED, -45.0);         // Turn  CCW to -45 Degrees
         gyroHold( TURN_SPEED, -45.0, 0.5);    // Hold -45 Deg heading for a 1/2 second
         gyroDrive(DRIVE_SPEED, 12.0, -45.0);  // Drive FWD 12 inches at 45 degrees
         gyroTurn( TURN_SPEED,  45.0);         // Turn  CW  to  45 Degrees
         gyroHold( TURN_SPEED,  45.0, 0.5);    // Hold  45 Deg heading for a 1/2 second
-        gyroTurn( TURN_SPEED,   0.0);         // Turn  CW  to   0 Degrees
-        gyroHold( TURN_SPEED,   0.0, 1.0);    // Hold  0 Deg heading for a 1 second
-        gyroDrive(DRIVE_SPEED,-48.0, 0.0);    // Drive REV 48 inches
+        gyroDrive(DRIVE_SPEED, 12.0, 45.0);  // Drive FWD 12 inches at 45 degrees
+        gyroTurn( TURN_SPEED, 0);         // Turn  CCW to 0 Degrees
+        gyroHold( TURN_SPEED, 0, 0.5);    // Hold -45 Deg heading for a 1/2 second
+
+        rightLauncher.setPower(0.75);
+        rightLauncher.setPower(0.75);
+
+        for(int i=0; i<3; i++)
+        {
+            pushServo.setPosition(Servo.MIN_POSITION);
+            sleep(250);
+            pushServo.setPosition(Servo.MAX_POSITION);
+            sleep(250);
+        }
+
+        gyroDrive(DRIVE_SPEED, 12.0, 0);  // Drive FWD 12 inches at 45 degrees
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
@@ -187,7 +179,6 @@ public class GyroAuton extends LinearOpMode {
             newRightFrontTarget = rightFront.getCurrentPosition() + moveCounts;
             newRightBackTarget = rightBack.getCurrentPosition() + moveCounts;
 
-
             // Set Target and Turn On RUN_TO_POSITION
             leftFront.setTargetPosition(newLeftFrontTarget);
             leftBack.setTargetPosition(newLeftBackTarget);
@@ -207,11 +198,10 @@ public class GyroAuton extends LinearOpMode {
             rightBack.setPower(speed);
 
             // keep looping while we are still active, and BOTH motors are running.
-            while (opModeIsActive() &&
-                    (leftFront.isBusy() && leftBack.isBusy() && rightFront.isBusy() && rightBack.isBusy())) {
-
+            while (opModeIsActive() && (leftFront.isBusy() && leftBack.isBusy() && rightFront.isBusy() && rightBack.isBusy()))
+            {
                 // adjust relative speed based on heading error.
-                    error = getError(angle);
+                error = getError(angle);
                 steer = getSteer(error, P_DRIVE_COEFF);
 
                 // if driving in reverse, the motor correction also needs to be reversed

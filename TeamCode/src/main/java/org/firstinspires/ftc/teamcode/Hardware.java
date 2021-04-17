@@ -23,8 +23,8 @@ public class Hardware {
     public CRServo intakeServo;
 
     //Wobble Goal
-    //public DcMotor wobbleGoalArm;
-    //public Servo wobbleGoalGrasp;
+    public DcMotor wobbleGoalArm;
+    public Servo wobbleGoalGrasp;
 
     /**
      * Creates a new Hardware with all parts connected to a name
@@ -47,9 +47,9 @@ public class Hardware {
         intakeServo = hwmp.crservo.get("Intake Servo");
 
         //Wobble Goal
-        //wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
-        //wobbleGoalGrasp = hwmp.servo.get("Wobble Goal Grasp");
-        //wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
+        wobbleGoalArm = hwmp.dcMotor.get("Wobble Goal Arm");
+        wobbleGoalGrasp = hwmp.servo.get("Wobble Goal Grasp");
+        wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
 
         resetDriveEncoders();
 
@@ -90,17 +90,6 @@ public class Hardware {
         rightFront.setPower(0);
         rightBack.setPower(0);
         leftBack.setPower(0);
-        //verticalLift.setPower(0);
-        //horizontalLift.setPower(0);
-
-        //Servos
-        //arm.setPosition(0);
-        //constrictR.setPosition(0);
-        //constrictL.setPosition(0);
-        //platform.setPosition(0);
-        //stoneGripper.setPosition(0);
-        //pusher.setPosition(0);
-        //armRotate.setPosition(0);
     }
 
 }

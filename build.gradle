@@ -30,7 +30,6 @@ allprojects {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
 
     flatDir {

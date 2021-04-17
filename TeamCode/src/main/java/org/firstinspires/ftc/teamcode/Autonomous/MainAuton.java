@@ -51,10 +51,58 @@ public class MainAuton extends LinearOpMode {
         ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
 
         //Motors and servos for wobble goal
-        //wobbleGoalArm = robot.wobbleGoalArm;
+        wobbleGoalArm = robot.wobbleGoalArm;
 
         waitForStart();
 
-        //
+        //Stafes left for half a second
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        sleep(500);
+
+        //Moves forward for one and a half seconds
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(1500);
+
+//        //Jerks to stop robot from turning
+//        leftFront.setPower(-ratio * lf);
+//        leftBack.setPower(-ratio * lb);
+//        rightFront.setPower(-ratio * rf);
+//        rightBack.setPower(-ratio * rb);
+//        sleep(50);
+
+        //Stafes right for half a second
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(500);
+
+        //Stops all motors
+        leftFront.setPower(0);
+        leftBack.setPower(0);
+        rightFront.setPower(0);
+        rightBack.setPower(0);
+
+        rightLauncher.setPower(1);
+        leftLauncher.setPower(-1);
+        sleep(500);
+        //Launches 3 disks
+        for (int i = 0; i < 3; i++) {
+            pushServo.setPosition(Servo.MIN_POSITION);
+            sleep(250);
+            pushServo.setPosition(Servo.MAX_POSITION);
+            sleep(250);
+        }
+
+        rightLauncher.setPower(0);
+        leftLauncher.setPower(0);
+
+        //Jay add whatever you need to add here
     }
 }

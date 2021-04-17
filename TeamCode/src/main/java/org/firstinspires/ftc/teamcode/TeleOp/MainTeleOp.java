@@ -62,6 +62,18 @@ public class MainTeleOp extends OpMode {
         pushServo.setPosition(Servo.MAX_POSITION);
         intakeServo = robot.intakeServo;
 
+        //Stop and Reset Encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Start motors using resetted encoders
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         //Motors and servos for wobble goal
         //wobbleGoalArm = robot.wobbleGoalArm;
         //wobbleGoalGrasp = robot.wobbleGoalGrasp;
@@ -76,7 +88,7 @@ public class MainTeleOp extends OpMode {
         //Methods responsible for control of different parts of the the robot
 
         Intake();
-        //WobbleGoal();
+        WobbleGoal();
         DriveControl();
 
         if(pushServo.getPosition() == Servo.MIN_POSITION)
@@ -131,7 +143,6 @@ public class MainTeleOp extends OpMode {
         }
     }
 
-    /*
     public void WobbleGoal() {
         if(gamepad1.dpad_right)
         {
@@ -144,13 +155,14 @@ public class MainTeleOp extends OpMode {
         if(gamepad1.dpad_up) //need to get values for min and max positions
         {
             telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+            telemetry.update();
         }
         if(gamepad1.dpad_down)
         {
             telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+            telemetry.update();
         }
     }
-     */
 
     public void DriveControl() {
         movement = gamepad1.left_stick_y;
@@ -160,10 +172,6 @@ public class MainTeleOp extends OpMode {
         double magnitude = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
         double direction = Math.atan2(-gamepad1.left_stick_x, gamepad1.left_stick_y);
         boolean precision = gamepad1.right_bumper;
-        int invert = 1;
-
-        if(gamepad1.x)
-            invert = invert * -1;
 
         //INFO Increasing speed to a maximum of 1
         double lf = magnitude * Math.sin(direction + Math.PI / 4) - rotation;
@@ -180,9 +188,9 @@ public class MainTeleOp extends OpMode {
         else
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
 
-        leftFront.setPower(invert * ratio * lf);
-        leftBack.setPower(invert * ratio * lb);
-        rightFront.setPower(invert * ratio * rf);
-        rightBack.setPower(invert * ratio * rb);
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
     }
 }
