@@ -75,8 +75,9 @@ public class MainTeleOp extends OpMode {
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Motors and servos for wobble goal
-        //wobbleGoalArm = robot.wobbleGoalArm;
-        //wobbleGoalGrasp = robot.wobbleGoalGrasp;
+        wobbleGoalArm = robot.wobbleGoalArm;
+        wobbleGoalGrasp = robot.wobbleGoalGrasp;
+        wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
     }
 
     @Override
@@ -154,13 +155,16 @@ public class MainTeleOp extends OpMode {
         }
         if(gamepad1.dpad_up) //need to get values for min and max positions
         {
-            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
-            telemetry.update();
+            //telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+            //telemetry.update();
+
+            wobbleGoalArm.setTargetPosition(-297);
         }
         if(gamepad1.dpad_down)
         {
-            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
-            telemetry.update();
+            //telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+            //telemetry.update();
+            wobbleGoalArm.setTargetPosition(-211);
         }
     }
 
