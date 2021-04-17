@@ -130,9 +130,14 @@ public class MainAuton extends LinearOpMode {
             rightLauncher.setPower(1);
             leftLauncher.setPower(-1);
             sleep(75);
-            pushServo.setPosition(Servo.MIN_POSITION);
-            sleep(250);
-            pushServo.setPosition(Servo.MAX_POSITION);
+            rightLauncher.setPower(1);
+            leftLauncher.setPower(-1);
+            for (int i = 0; i < 1; i++) {
+                pushServo.setPosition(Servo.MIN_POSITION);
+                sleep(250);
+                pushServo.setPosition(Servo.MAX_POSITION);
+                sleep(250);
+            }
 
             //take wobble goal to designated box(first one to the right)
             leftFront.setPower(ratio * lf);
@@ -148,15 +153,15 @@ public class MainAuton extends LinearOpMode {
             //INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
 
             //park
-            leftFront.setPower(ratio * lf);
-            leftBack.setPower(ratio * lb);
-            rightFront.setPower(ratio * rf);
-            rightBack.setPower(ratio * rb);
+            leftFront.setPower(-ratio * lf);
+            leftBack.setPower(-ratio * lb);
+            rightFront.setPower(-ratio * rf);
+            rightBack.setPower(-ratio * rb);
             sleep(75);
         }
         else if UGContourRingPipeline.Height.FOUR()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
-            //Robot moves back to intake 4 rings
+            //Robot moves back to intake 3 out of the 4 rings
             leftFront.setPower(-(ratio * lf));
             leftBack.setPower(-(ratio * lb));
             rightFront.setPower(-(ratio * rf));
@@ -164,16 +169,56 @@ public class MainAuton extends LinearOpMode {
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
-            sleep(315);
-        }
-        else if (UGContourRingPipeline.Height.ZERO()) {
-            //Robot moves forward and lands on parking line
-            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
+
+            //move forward and shoot the rings
             leftFront.setPower(ratio * lf);
             leftBack.setPower(ratio * lb);
             rightFront.setPower(ratio * rf);
             rightBack.setPower(ratio * rb);
-            sleep(250);
+            sleep(75);
+            rightLauncher.setPower(1);
+            leftLauncher.setPower(-1);
+            for (int i = 0; i < 3; i++) {
+                pushServo.setPosition(Servo.MIN_POSITION);
+                sleep(250);
+                pushServo.setPosition(Servo.MAX_POSITION);
+                sleep(250);
+
+            //take wobble goal to designated box(first middle one)
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(1000);
+            //INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+
+            //park
+            leftFront.setPower(-ratio * lf);
+            leftBack.setPower(-ratio * lb);
+            rightFront.setPower(-ratio * rf);
+            rightBack.setPower(-ratio * rb);
+            sleep(75);
+        }
+        else if (UGContourRingPipeline.Height.ZERO()) {
+                //take wobble goal to designated box(first last one)
+                leftFront.setPower(ratio * lf);
+                leftBack.setPower(ratio * lb);
+                rightFront.setPower(ratio * rf);
+                rightBack.setPower(ratio * rb);
+                sleep(1000);
+                leftFront.setPower(ratio * lf);
+                leftBack.setPower(-ratio * lb);
+                rightFront.setPower(-ratio * rf);
+                rightBack.setPower(ratio * rb);
+                sleep(500);
+                //INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+
+                //park
+                leftFront.setPower(-ratio * lf);
+                leftBack.setPower(-ratio * lb);
+                rightFront.setPower(-ratio * rf);
+                rightBack.setPower(-ratio * rb);
+                sleep(75);
         }
     }
 }
