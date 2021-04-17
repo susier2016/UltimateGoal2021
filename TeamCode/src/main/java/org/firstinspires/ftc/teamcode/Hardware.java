@@ -58,7 +58,7 @@ public class Hardware {
         rightFront.setDirection(DcMotor.Direction.REVERSE);
 
         //Webcam
-        WebcamName = hwmp.get(WebcamName.class, "webcam");
+        //WebcamName = hwmp.get(WebcamName.class, "webcam");
     }
 
     /**
