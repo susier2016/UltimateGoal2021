@@ -58,8 +58,6 @@ public class FourRingAuton extends LinearOpMode {
 
         waitForStart();
 
-        //Picks up wobble goal
-
         //Stafes left for half a second
         leftFront.setPower(-ratio * lf);
         leftBack.setPower(ratio * lb);
@@ -141,7 +139,9 @@ public class FourRingAuton extends LinearOpMode {
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
         sleep(1000);
-//INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+
+//drops wobble goal
+        hkhfv
 
 //park
         leftFront.setPower(-ratio * lf);
