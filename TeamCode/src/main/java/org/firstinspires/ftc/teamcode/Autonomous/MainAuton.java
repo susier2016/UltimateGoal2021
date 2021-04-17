@@ -59,6 +59,9 @@ public class MainAuton extends LinearOpMode {
 
         waitForStart();
 
+        //Picks up wobble goal
+        h
+
         //Stafes left for half a second
         leftFront.setPower(-ratio * lf);
         leftBack.setPower(ratio * lb);
@@ -109,15 +112,47 @@ public class MainAuton extends LinearOpMode {
 
         if (UGContourRingPipeline.Height.ONE()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+
             //Robot moves back to intake 1 ring
-            leftFront.setPower(-(ratio * lf));
-            leftBack.setPower(-(ratio * lb));
-            rightFront.setPower(-(ratio * rf));
-            rightBack.setPower(-(ratio * rb));
+            leftFront.setPower(-ratio * lf);
+            leftBack.setPower(-ratio * lb);
+            rightFront.setPower(-ratio * rf);
+            rightBack.setPower(-ratio * rb);
             intakeMotor.setPower(1);
             intakeServo.setPower(-1);
             sleep(150);
-            sleep(315);
+
+            //move forward and shoot the ring
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            rightLauncher.setPower(1);
+            leftLauncher.setPower(-1);
+            sleep(75);
+            pushServo.setPosition(Servo.MIN_POSITION);
+            sleep(250);
+            pushServo.setPosition(Servo.MAX_POSITION);
+
+            //take wobble goal to designated box(first one to the right)
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(1000);
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(-ratio * lb);
+            rightFront.setPower(-ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(500);
+            //INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+
+            //park
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(75);
         }
         else if UGContourRingPipeline.Height.FOUR()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
@@ -132,7 +167,7 @@ public class MainAuton extends LinearOpMode {
             sleep(315);
         }
         else if (UGContourRingPipeline.Height.ZERO()) {
-            //Robot moves back and lands on parking line
+            //Robot moves forward and lands on parking line
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
             leftFront.setPower(ratio * lf);
             leftBack.setPower(ratio * lb);
