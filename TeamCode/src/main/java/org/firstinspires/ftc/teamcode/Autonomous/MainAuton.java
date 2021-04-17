@@ -60,7 +60,6 @@ public class MainAuton extends LinearOpMode {
         waitForStart();
 
         //Picks up wobble goal
-        h
 
         //Stafes left for half a second
         leftFront.setPower(-ratio * lf);
@@ -110,9 +109,8 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
 
-        
-
-        if (EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.ONE()) {
+        if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.ONE())
+        {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
 
             //Robot moves back to intake 1 ring
@@ -161,7 +159,8 @@ public class MainAuton extends LinearOpMode {
             rightBack.setPower(-ratio * rb);
             sleep(75);
         }
-        else if EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.FOUR()) {
+        else if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.FOUR())
+        {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
             //Robot moves back to intake 3 out of the 4 rings
             leftFront.setPower(-(ratio * lf));
@@ -180,11 +179,13 @@ public class MainAuton extends LinearOpMode {
             sleep(75);
             rightLauncher.setPower(1);
             leftLauncher.setPower(-1);
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 pushServo.setPosition(Servo.MIN_POSITION);
                 sleep(250);
                 pushServo.setPosition(Servo.MAX_POSITION);
                 sleep(250);
+            }
 
             //take wobble goal to designated box(first middle one)
             leftFront.setPower(ratio * lf);
@@ -201,7 +202,7 @@ public class MainAuton extends LinearOpMode {
             rightBack.setPower(-ratio * rb);
             sleep(75);
         }
-        else if (EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.NONE) {
+        else if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.NONE) {
                 //take wobble goal to designated box(first last one)
                 leftFront.setPower(ratio * lf);
                 leftBack.setPower(ratio * lb);

@@ -16,8 +16,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 //@Disabled
-@TeleOp
-public class EasyOpenCVExample extends LinearOpMode
+//@TeleOp
+public class DetectRingAmount extends LinearOpMode
 {
     OpenCvCamera wCam;
     SkystoneDeterminationPipeline pipeline;
