@@ -145,7 +145,7 @@ public class OneRingAuton extends LinearOpMode {
         sleep(500);
 
 //drops wobble goal
-        hkhfv
+        wobbleGoalGrasp.setPosition(Servo.MAX_POSITION);
 
 //park
         ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))
