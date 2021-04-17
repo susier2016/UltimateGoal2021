@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.teamcode.Hardware;
 
 @Autonomous(name = "Main Autonomous", group = "Linear OpMode")
-@Disabled
+//ii@Disabled
 public class MainAuton extends LinearOpMode {
 
     //Create a robot---responsible for connecting hardware of Hardware class to methods
@@ -61,34 +61,38 @@ public class MainAuton extends LinearOpMode {
         waitForStart();
 
         //Picks up wobble goal
-
+        /*
         //Stafes left for half a second
         leftFront.setPower(-ratio * lf);
         leftBack.setPower(ratio * lb);
         rightFront.setPower(ratio * rf);
         rightBack.setPower(-ratio * rb);
         sleep(500);
+        */
 
         //Moves forward for one and a half seconds
-        leftFront.setPower(ratio * lf);
+        /*leftFront.setPower(ratio * lf);
         leftBack.setPower(ratio * lb);
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
-        sleep(1500);
+        sleep(1000);
 
-//        //Jerks to stop robot from turning
-//        leftFront.setPower(-ratio * lf);
-//        leftBack.setPower(-ratio * lb);
-//        rightFront.setPower(-ratio * rf);
-//        rightBack.setPower(-ratio * rb);
-//        sleep(50);
+        //Jerks to stop robot from turning
+        leftFront.setPower(-ratio * lf);
+        leftBack.setPower(-ratio * lb);
+        rightFront.setPower(-ratio * rf);
+        rightBack.setPower(-ratio * rb);
+        sleep(50);*/
 
+        /*
         //Stafes right for half a second
         leftFront.setPower(ratio * lf);
         leftBack.setPower(-ratio * lb);
         rightFront.setPower(-ratio * rf);
         rightBack.setPower(ratio * rb);
         sleep(500);
+        */
+
 
         //Stops all motors
         leftFront.setPower(0);
@@ -96,19 +100,26 @@ public class MainAuton extends LinearOpMode {
         rightFront.setPower(0);
         rightBack.setPower(0);
 
-        rightLauncher.setPower(1);
-        leftLauncher.setPower(-1);
+        rightLauncher.setPower(0.75);
+        leftLauncher.setPower(-0.75);
         sleep(500);
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
             pushServo.setPosition(Servo.MIN_POSITION);
-            sleep(250);
+            sleep(500);
             pushServo.setPosition(Servo.MAX_POSITION);
-            sleep(250);
+            sleep(500);
         }
 
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
+
+        //Move forward to park on line
+        leftFront.setPower(ratio * lf);
+        leftBack.setPower(ratio * lb);
+        rightFront.setPower(ratio * rf);
+        rightBack.setPower(ratio * rb);
+        sleep(1500);
 
         /*if (DetectRingAmount.)
         {
