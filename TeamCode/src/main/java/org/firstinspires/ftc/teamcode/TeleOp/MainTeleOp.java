@@ -88,6 +88,10 @@ public class MainTeleOp extends OpMode {
             pushServo.setPosition(Servo.MAX_POSITION);
         }
 
+        if(gamepad1.x)
+        {
+            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
+        }
         //Show Telemetry on Driver Station Phone
         telemetry.update();
     }
@@ -146,16 +150,12 @@ public class MainTeleOp extends OpMode {
         }
         if(gamepad1.dpad_up) //need to get values for min and max positions
         {
-            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
-            telemetry.update();
             wobbleGoalArm.setTargetPosition(34);
             wobbleGoalArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             wobbleGoalArm.setPower(0.5);
         }
         if(gamepad1.dpad_down)
         {
-            telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
-            telemetry.update();
             wobbleGoalArm.setTargetPosition(162);
             wobbleGoalArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             wobbleGoalArm.setPower(0.5);
