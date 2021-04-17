@@ -19,7 +19,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 @TeleOp
 public class EasyOpenCVExample extends LinearOpMode
 {
-    OpenCvCamera phoneCam;
+    OpenCvCamera wCam;
     SkystoneDeterminationPipeline pipeline;
 
     @Override
@@ -27,9 +27,9 @@ public class EasyOpenCVExample extends LinearOpMode
     {
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        wCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
-        phoneCam.setPipeline(pipeline);
+        wCam.setPipeline(pipeline);
 
 
 
@@ -37,14 +37,14 @@ public class EasyOpenCVExample extends LinearOpMode
         // We set the viewport policy to optimized view so the preview doesn't appear 90 deg
         // out when the RC activity is in portrait. We do our actual image processing assuming
         // landscape orientation, though.
-        //phoneCam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
+        //wCam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
 
-        phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        wCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
             public void onOpened()
             {
-                phoneCam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+                wCam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
             }
         });
 
