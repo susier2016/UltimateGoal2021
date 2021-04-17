@@ -111,9 +111,9 @@ public class MainAuton extends LinearOpMode {
 
         if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.ONE())
         {
-            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
 
             //Robot moves back to intake 1 ring
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
             leftFront.setPower(-ratio * lf);
             leftBack.setPower(-ratio * lb);
             rightFront.setPower(-ratio * rf);
@@ -123,12 +123,11 @@ public class MainAuton extends LinearOpMode {
             sleep(150);
 
             //move forward and shoot the ring
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))
             leftFront.setPower(ratio * lf);
             leftBack.setPower(ratio * lb);
             rightFront.setPower(ratio * rf);
             rightBack.setPower(ratio * rb);
-            rightLauncher.setPower(1);
-            leftLauncher.setPower(-1);
             sleep(75);
             rightLauncher.setPower(1);
             leftLauncher.setPower(-1);
@@ -136,7 +135,6 @@ public class MainAuton extends LinearOpMode {
                 pushServo.setPosition(Servo.MIN_POSITION);
                 sleep(250);
                 pushServo.setPosition(Servo.MAX_POSITION);
-                sleep(250);
             }
 
             //take wobble goal to designated box(first one to the right)
@@ -144,20 +142,22 @@ public class MainAuton extends LinearOpMode {
             leftBack.setPower(ratio * lb);
             rightFront.setPower(ratio * rf);
             rightBack.setPower(ratio * rb);
-            sleep(1000);
+            sleep(850);
             leftFront.setPower(ratio * lf);
             leftBack.setPower(-ratio * lb);
             rightFront.setPower(-ratio * rf);
             rightBack.setPower(ratio * rb);
             sleep(500);
-            //INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+
+            //drops wobble goal
+            hkhfv
 
             //park
             leftFront.setPower(-ratio * lf);
             leftBack.setPower(-ratio * lb);
             rightFront.setPower(-ratio * rf);
             rightBack.setPower(-ratio * rb);
-            sleep(75);
+            sleep(700);
         }
         else if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.FOUR())
         {
@@ -172,6 +172,7 @@ public class MainAuton extends LinearOpMode {
             sleep(150);
 
             //move forward and shoot the rings
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)))
             leftFront.setPower(ratio * lf);
             leftBack.setPower(ratio * lb);
             rightFront.setPower(ratio * rf);
@@ -203,25 +204,27 @@ public class MainAuton extends LinearOpMode {
             sleep(75);
         }
         else if (DetectRingAmount.SkystoneDeterminationPipeline.RingPosition.NONE) {
-                //take wobble goal to designated box(first last one)
-                leftFront.setPower(ratio * lf);
-                leftBack.setPower(ratio * lb);
-                rightFront.setPower(ratio * rf);
-                rightBack.setPower(ratio * rb);
-                sleep(1000);
-                leftFront.setPower(ratio * lf);
-                leftBack.setPower(-ratio * lb);
-                rightFront.setPower(-ratio * rf);
-                rightBack.setPower(ratio * rb);
-                sleep(500);
-                //INPUT CODE THAT MAKES THE ROBOT DROP THE WOBBLE GOAL DOWN
+            //take wobble goal to designated box(last one)
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(1500);
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(-ratio * lb);
+            rightFront.setPower(-ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(500);
 
-                //park
-                leftFront.setPower(-ratio * lf);
-                leftBack.setPower(-ratio * lb);
-                rightFront.setPower(-ratio * rf);
-                rightBack.setPower(-ratio * rb);
-                sleep(75);
+            //drop wobble goal into box
+
+            //park
+            leftFront.setPower(-ratio * lf);
+            leftBack.setPower(-ratio * lb);
+            rightFront.setPower(-ratio * rf);
+            rightBack.setPower(-ratio * rb);
+            sleep(1000);
         }
     }
 }
