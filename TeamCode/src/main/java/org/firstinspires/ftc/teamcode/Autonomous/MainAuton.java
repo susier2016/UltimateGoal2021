@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
+import com.arcrobotics.ftclib.vision.UGContourRingPipeline;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -106,7 +107,7 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
 
-        if (detectOne()) {
+        if (UGContourRingPipeline.Height.ONE()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
             //Robot moves back to intake 1 ring
             leftFront.setPower(-(ratio * lf));
@@ -118,31 +119,7 @@ public class MainAuton extends LinearOpMode {
             sleep(150);
             sleep(315);
         }
-        else if (detectTwo()) {
-            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 3;
-            //Robot moves back to intake 2 rings
-            leftFront.setPower(-(ratio * lf));
-            leftBack.setPower(-(ratio * lb));
-            rightFront.setPower(-(ratio * rf));
-            rightBack.setPower(-(ratio * rb));
-            intakeMotor.setPower(1);
-            intakeServo.setPower(-1);
-            sleep(150);
-            sleep(315);
-        }
-        else if (detectThree()) {
-            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 4;
-            //Robot moves back to intake 3 rings
-            leftFront.setPower(-(ratio * lf));
-            leftBack.setPower(-(ratio * lb));
-            rightFront.setPower(-(ratio * rf));
-            rightBack.setPower(-(ratio * rb));
-            intakeMotor.setPower(1);
-            intakeServo.setPower(-1);
-            sleep(150);
-            sleep(315);
-        }
-        else if (detectFour()) {
+        else if UGContourRingPipeline.Height.FOUR()) {
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
             //Robot moves back to intake 4 rings
             leftFront.setPower(-(ratio * lf));
@@ -154,7 +131,7 @@ public class MainAuton extends LinearOpMode {
             sleep(150);
             sleep(315);
         }
-        else {
+        else if (UGContourRingPipeline.Height.ZERO()) {
             //Robot moves back and lands on parking line
             ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
             leftFront.setPower(ratio * lf);
