@@ -113,7 +113,7 @@ public class NoRingAuton extends LinearOpMode {
         sleep(500);
 
 //drops wobble goal
-        hkhfv
+        wobbleGoalGrasp.setPosition(Servo.MAX_POSITION);
 
 //park
         leftFront.setPower(-ratio * lf);
