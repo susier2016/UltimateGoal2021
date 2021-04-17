@@ -58,15 +58,6 @@ public class NoRingAuton extends LinearOpMode {
 
         waitForStart();
 
-        //Picks up wobble goal
-
-        //Stafes left for half a second
-        leftFront.setPower(-ratio * lf);
-        leftBack.setPower(ratio * lb);
-        rightFront.setPower(ratio * rf);
-        rightBack.setPower(-ratio * rb);
-        sleep(500);
-
         //Moves forward for one and a half seconds
         leftFront.setPower(ratio * lf);
         leftBack.setPower(ratio * lb);
@@ -121,7 +112,8 @@ public class NoRingAuton extends LinearOpMode {
         rightBack.setPower(ratio * rb);
         sleep(500);
 
-//drop wobble goal into box
+//drops wobble goal
+        hkhfv
 
 //park
         leftFront.setPower(-ratio * lf);
