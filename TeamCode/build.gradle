@@ -13,10 +13,16 @@
 
 // Include common definitions from above.
 apply from: '../build.common.gradle'
+apply plugin: 'kotlin-android'
 apply from: '../build.dependencies.gradle'
 
 dependencies {
     implementation project(':FtcRobotController')
-    implementation 'org.openftc:easyopencv:1.4.3'
+    implementation 'org.openftc:easyopencv:1.4.4'
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
