@@ -51,39 +51,25 @@ public class MainAuton extends LinearOpMode {
         ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
 
         //Motors and servos for wobble goal
-        wobbleGoalArm = robot.wobbleGoalArm;
+        //wobbleGoalArm = robot.wobbleGoalArm;
 
         waitForStart();
 
-        //Stafes left for half a second
-        leftFront.setPower(-ratio * lf);
-        leftBack.setPower(ratio * lb);
-        rightFront.setPower(ratio * rf);
-        rightBack.setPower(-ratio * rb);
-        sleep(500);
-
-        //Moves forward for one and a half seconds
+        //Robot moves up and shoots 3 preloaded rings into goals
         leftFront.setPower(ratio * lf);
         leftBack.setPower(ratio * lb);
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
-        sleep(1500);
 
-//        //Jerks to stop robot from turning
-//        leftFront.setPower(-ratio * lf);
-//        leftBack.setPower(-ratio * lb);
-//        rightFront.setPower(-ratio * rf);
-//        rightBack.setPower(-ratio * rb);
-//        sleep(50);
+        sleep(1000);
 
-        //Stafes right for half a second
-        leftFront.setPower(ratio * lf);
+        leftFront.setPower(-ratio * lf);
         leftBack.setPower(-ratio * lb);
         rightFront.setPower(-ratio * rf);
-        rightBack.setPower(ratio * rb);
-        sleep(500);
+        rightBack.setPower(-ratio * rb);
 
-        //Stops all motors
+        sleep(50);
+
         leftFront.setPower(0);
         leftBack.setPower(0);
         rightFront.setPower(0);
@@ -92,6 +78,7 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(1);
         leftLauncher.setPower(-1);
         sleep(500);
+
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
             pushServo.setPosition(Servo.MIN_POSITION);
@@ -103,6 +90,63 @@ public class MainAuton extends LinearOpMode {
         rightLauncher.setPower(0);
         leftLauncher.setPower(0);
 
-        //Jay add whatever you need to add here
+        if (detectOne()) {
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 2;
+            //Robot moves back to intake 1 ring
+            leftFront.setPower(-(ratio * lf));
+            leftBack.setPower(-(ratio * lb));
+            rightFront.setPower(-(ratio * rf));
+            rightBack.setPower(-(ratio * rb));
+            intakeMotor.setPower(1);
+            intakeServo.setPower(-1);
+            sleep(150);
+            sleep(315);
+        } 
+        else if (detectTwo()) {
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 3;
+            //Robot moves back to intake 2 rings
+            leftFront.setPower(-(ratio * lf));
+            leftBack.setPower(-(ratio * lb));
+            rightFront.setPower(-(ratio * rf));
+            rightBack.setPower(-(ratio * rb));
+            intakeMotor.setPower(1);
+            intakeServo.setPower(-1);
+            sleep(150);
+            sleep(315);
+        } 
+        else if (detectThree()) {
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 4;
+            //Robot moves back to intake 3 rings
+            leftFront.setPower(-(ratio * lf));
+            leftBack.setPower(-(ratio * lb));
+            rightFront.setPower(-(ratio * rf));
+            rightBack.setPower(-(ratio * rb));
+            intakeMotor.setPower(1);
+            intakeServo.setPower(-1);
+            sleep(150);
+            sleep(315);
+        }
+        else if (detectFour()) {
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf))) / 5;
+            //Robot moves back to intake 4 rings
+            leftFront.setPower(-(ratio * lf));
+            leftBack.setPower(-(ratio * lb));
+            rightFront.setPower(-(ratio * rf));
+            rightBack.setPower(-(ratio * rb));
+            intakeMotor.setPower(1);
+            intakeServo.setPower(-1);
+            sleep(150);
+            
+            sleep(315);
+        }
+        else { 
+            //Robot moves back and lands on parking line
+            ratio = hypot / (Math.max(Math.max(Math.max(Math.abs(lf), Math.abs(lb)), Math.abs(rb)), Math.abs(rf)));
+            leftFront.setPower(ratio * lf);
+            leftBack.setPower(ratio * lb);
+            rightFront.setPower(ratio * rf);
+            rightBack.setPower(ratio * rb);
+            sleep(250);
+        }
     }
 }
