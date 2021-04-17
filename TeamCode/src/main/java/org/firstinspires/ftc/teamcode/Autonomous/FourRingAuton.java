@@ -141,9 +141,11 @@ public class FourRingAuton extends LinearOpMode {
         sleep(1000);
 
 //drops wobble goal
+        wobbleGoalArm.setTargetPosition(-211);
+        wobbleGoalArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        wobbleGoalArm.setPower(0.5);
         wobbleGoalGrasp.setPosition(Servo.MAX_POSITION);
-
-//park
+        //park
         leftFront.setPower(-ratio * lf);
         leftBack.setPower(-ratio * lb);
         rightFront.setPower(-ratio * rf);
