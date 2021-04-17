@@ -62,20 +62,11 @@ public class MainTeleOp extends OpMode {
         pushServo.setPosition(Servo.MAX_POSITION);
         intakeServo = robot.intakeServo;
 
-        //Stop and Reset Encoders
-        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        //Start motors using resetted encoders
-        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         //Motors and servos for wobble goal
         wobbleGoalArm = robot.wobbleGoalArm;
+        wobbleGoalArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        wobbleGoalArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         wobbleGoalGrasp = robot.wobbleGoalGrasp;
         wobbleGoalGrasp.setPosition(Servo.MIN_POSITION);
     }
@@ -157,14 +148,17 @@ public class MainTeleOp extends OpMode {
         {
             //telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
             //telemetry.update();
-
             wobbleGoalArm.setTargetPosition(-297);
+            wobbleGoalArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            wobbleGoalArm.setPower(0.5);
         }
         if(gamepad1.dpad_down)
         {
             //telemetry.addData("Wobble Goal Arm Position: ", wobbleGoalArm.getCurrentPosition());
             //telemetry.update();
             wobbleGoalArm.setTargetPosition(-211);
+            wobbleGoalArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            wobbleGoalArm.setPower(0.5);
         }
     }
 
