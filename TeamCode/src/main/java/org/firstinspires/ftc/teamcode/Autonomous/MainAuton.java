@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Old;
+package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -106,9 +106,9 @@ public class MainAuton extends LinearOpMode {
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
             pushServo.setPosition(Servo.MIN_POSITION);
-            sleep(500);
+            sleep(750);
             pushServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            sleep(750);
         }
 
         rightLauncher.setPower(0);
@@ -119,7 +119,7 @@ public class MainAuton extends LinearOpMode {
         leftBack.setPower(ratio * lb);
         rightFront.setPower(ratio * rf);
         rightBack.setPower(ratio * rb);
-        sleep(1500);
+        sleep(1850);
 
         /*if (DetectRingAmount.)
         {
