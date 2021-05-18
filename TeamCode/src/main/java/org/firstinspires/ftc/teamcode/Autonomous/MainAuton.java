@@ -100,8 +100,8 @@ public class MainAuton extends LinearOpMode {
         rightFront.setPower(0);
         rightBack.setPower(0);
 
-        rightLauncher.setPower(0.75);
-        leftLauncher.setPower(-0.75);
+        rightLauncher.setPower(0.85);
+        leftLauncher.setPower(-0.65);
         sleep(500);
         //Launches 3 disks
         for (int i = 0; i < 3; i++) {
