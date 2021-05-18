@@ -117,8 +117,8 @@ public class MainTeleOp extends OpMode {
 
         if(gamepad1.left_bumper)
         {
-            rightLauncher.setPower(0.75);
-            leftLauncher.setPower(-0.75);
+            rightLauncher.setPower(0.85);
+            leftLauncher.setPower(-0.65);
         }
         else
         {
