@@ -95,7 +95,7 @@ public class MainAuton extends LinearOpMode {
 
 
         //Stops all motors
-        leftFront.setPower(1);
+        leftFront.setPower(0);
         leftBack.setPower(0);
         rightFront.setPower(0);
         rightBack.setPower(0);
